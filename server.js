@@ -1,8 +1,16 @@
+process.on('uncaughtException', (err) => {
+  console.error('UNCAUGHT EXCEPTION:', err);
+  process.exit(1);
+});
+
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
 const Anthropic = require('@anthropic-ai/sdk');
 require('dotenv').config();
+
+console.log('Starting server...');
+console.log('API key present:', !!process.env.ANTHROPIC_API_KEY);
 
 const app = express();
 const upload = multer();
